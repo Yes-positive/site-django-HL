@@ -1,0 +1,21 @@
+{% extends 'base.html' %}
+
+{% block content %}
+{% load custom_tags %}
+<div class="media">
+    {% if post.media %}
+        <div class="media mt-4">
+            {% if post.media.url|endswith:".jpg" or post.media.url|endswith:".png" or post.media.url|endswith:".jpeg" %}
+                <img src="{{ post.media.url }}" alt="Пост" style="max-width: 1000px;">
+            {% elif post.media.url|endswith:".mp4" %}
+                <video width="320" height="240" controls>
+                    <source src="{{ post.media.url }}" type="video/mp4">
+                    Your browser does not support the video tag.
+                </video>
+            {% else %}
+            {% endif %}
+        </div>
+        {% endif %}   
+</div>
+
+{% endblock %}
