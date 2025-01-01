@@ -135,6 +135,10 @@ AUTH_USER_MODEL = 'auth_sys.CustomUser'
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
+LOGIN_URL = "/register/"
 
 MEDIA_URL = "/media/"
 MEDIA_ROOT = os.path.join(BASE_DIR, "media")
+
+LOGIN_REDIRECT_URL = "post-list"
+LOGOUT_REDIRECT_URL = "logout"

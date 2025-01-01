@@ -3,18 +3,37 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Тест</title>
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <title>СайтHLPDB</title><link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    
     {% load static %}
     <link rel="stylesheet" href="{% static 'css/style.css' %}">
 </head>
 <body>
-    <div>
-        <form action="{% url 'task-post' task.id %}" method="post" enctype="multipart/form-data">
+    <div class="status"></div>
+    <script>
+        const rootElement = document.documentElement;
+
+        const updateStatus = (e) => {
+            const color = navigator.onLine ? '#055810':
+            '#bb2e07';
+            rootElement.style.setProperty('--status-color',
+            color);
+        }
+
+        window.addEventListener('online', updateStatus);
+        window.addEventListener('offline', updateStatus);
+    </script>
+    <nav class="navbar navbar-expand-lg navbar-light">
+        <a class="btn btn-outline-danger" href="{% url 'post-list' %}">Всі пости</a>
+        <a class="btn btn-outline-danger" href="{% url 'register' %}">Реєстрація</a>
+        <a class="btn btn-outline-danger" href="{% url 'logout' %}">Вихід</a>
+        <form action="{% url 'logout' %}" method="post">
             {% csrf_token %}
-            {{ post_form.as_p }}
-            <button type="submit"><a href="{{ post.media.url }}">Завантажити пост</a></button>
+            <button type="submit" class="btn btn-outline-danger">Вхід</button>
         </form>
-    </div>
+    </nav>
+
+    {% block content %}
+    {% endblock %}
 </body>
 </html>

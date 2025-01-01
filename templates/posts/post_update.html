@@ -1,0 +1,13 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="container">
+    <h2>Оновлення постів</h2>
+    <form method="post">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit" class="btn btn-info">Оновити пост</button>
+        <a href="{% url 'post-list' %}" class="btn btn-dark">повернутися до постів</a>
+    </form>
+</div>
+{% endblock %}

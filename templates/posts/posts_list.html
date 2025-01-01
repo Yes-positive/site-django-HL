@@ -1,0 +1,20 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div>
+    <a href="{% url 'post-create' %}" class="btn btn-primary mb-3">Додати пост</a>
+        {% for post in posts %}
+
+        <li class="list-group-item">
+            <div>
+                <a href="{% url 'post-detail' post.pk %}">{{ post.title }}</a>
+                <span class="badge badge-primary">{{ post.date }}</span>
+                <span class="badge badge-secondary">{{ post.user.username }}</span>
+            </div>
+        </li>
+        {% empty %}
+        <li class="list-group-item">Постів не знайдено</li>
+        {% endfor %}
+    </ul>
+</div>
+{% endblock %}
